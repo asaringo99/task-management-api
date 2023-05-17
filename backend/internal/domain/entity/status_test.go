@@ -6,40 +6,40 @@ import (
 )
 
 var (
-	defaultContents = Contents{}
+	defaultStatus = Status{}
 )
 
-func TestNewContents(t *testing.T) {
+func TestNewStatus(t *testing.T) {
 	tests := []struct {
 		name  string
 		value string
-		want  Contents
+		want  Status
 	}{
-		{name: "CanCreateContentsType", value: "test", want: defaultContents},
+		{name: "CanCreateStatusType", value: "Pending", want: defaultStatus},
 		// TODO: Add Tests
 	}
 
 	for _, tc := range tests {
-		contents := NewContents(tc.value)
-		if !reflect.DeepEqual(reflect.TypeOf(contents), reflect.TypeOf(tc.want)) {
+		Status := NewStatus(tc.value)
+		if !reflect.DeepEqual(reflect.TypeOf(Status), reflect.TypeOf(tc.want)) {
 			t.Fatalf("Type is NOT CORRECT")
 		}
 	}
 }
 
-func TestContentsToValue(t *testing.T) {
+func TestStatusToValue(t *testing.T) {
 	tests := []struct {
 		name  string
 		value string
 		want  string
 	}{
-		{name: "no diff", value: "test", want: "test"},
+		{name: "no diff", value: "In Progress", want: "In Progress"},
 		// TODO: Add Tests
 	}
 
 	for _, tc := range tests {
-		contents := NewContents(tc.value)
-		got := contents.ToValue()
+		Status := NewStatus(tc.value)
+		got := Status.ToValue()
 		if !reflect.DeepEqual(got, tc.want) {
 			t.Fatalf("case: %v, expected: %s, got: %s", tc.name, tc.want, got)
 		}
