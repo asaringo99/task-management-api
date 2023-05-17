@@ -1,0 +1,57 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app/
+    tty: true
+    environment:
+      MYSQL_HOST: db-container
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MASQL_DATABASE: tm
+      MYSQL_USER: task_management_user
+      MYSQL_PASSWORD: passw0rd
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - task_management_network
+
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    tty: true
+    container_name: db-container
+    hostname: db-server
+    ports:
+      - 3306:3306
+    volumes:
+      - type: volume
+        source: mysql_volume
+        target: /var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MASQL_DATABASE: task_management
+      MYSQL_PASSWORD: passw0rd
+      MYSQL_USER: task_management_user
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    networks:
+      - task_management_network
+
+networks:
+  task_management_network:
+    driver: bridge
+    external: true
+
+volumes:
+  mysql_volume:
+    name: mysql_volume
+    external: true
