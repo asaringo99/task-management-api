@@ -12,6 +12,8 @@ jobs:
           check-latest: true
       - name: cd
         run: cd backend
+      - name: ls
+        run: ls
       - name: Install dependencies
         run: go get 
       - name: Build
