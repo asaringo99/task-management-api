@@ -39,16 +39,13 @@ func TestGetUserId(t *testing.T) {
 		name     string
 		username domain.Username
 		userid   domain.Userid
-		want     User
+		want     domain.Userid
 	}{
 		{
 			name:     "no diff",
 			username: domain.NewUsername("user"),
 			userid:   domain.NewUserid(1),
-			want: User{
-				username: domain.NewUsername("user"),
-				userid:   domain.NewUserid(1),
-			},
+			want:     domain.NewUserid(1),
 		},
 		// TODO: Add Tests
 	}
@@ -67,16 +64,13 @@ func TestGetUserName(t *testing.T) {
 		name     string
 		username domain.Username
 		userid   domain.Userid
-		want     User
+		want     domain.Username
 	}{
 		{
 			name:     "no diff",
 			username: domain.NewUsername("user"),
 			userid:   domain.NewUserid(1),
-			want: User{
-				username: domain.NewUsername("user"),
-				userid:   domain.NewUserid(1),
-			},
+			want:     domain.NewUsername("user"),
 		},
 		// TODO: Add Tests
 	}
