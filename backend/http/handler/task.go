@@ -62,5 +62,13 @@ func (t *TaskHandler) AddEntryPoint(e *echo.Echo) {
 			}
 			return c.String(http.StatusOK, "Success")
 		})
+
+		r.PUT("/put/:id", func(c echo.Context) error {
+			err := t.controller.Put(c)
+			if err != nil {
+				return c.String(http.StatusNoContent, "Error!")
+			}
+			return c.String(http.StatusOK, "Success")
+		})
 	}
 }
