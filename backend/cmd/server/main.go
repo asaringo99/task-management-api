@@ -19,12 +19,15 @@ import (
 	task_create_gateway "github.com/asaringo99/task_management/internal/adapter/gateway/task/create"
 	task_delete_gateway "github.com/asaringo99/task_management/internal/adapter/gateway/task/delete"
 	task_fetch_gateway "github.com/asaringo99/task_management/internal/adapter/gateway/task/fetch"
+	task_put_gateway "github.com/asaringo99/task_management/internal/adapter/gateway/task/put"
 	task_create_repository "github.com/asaringo99/task_management/internal/application/repository/task/create"
 	task_delete_repository "github.com/asaringo99/task_management/internal/application/repository/task/delete"
 	task_fetch_repository "github.com/asaringo99/task_management/internal/application/repository/task/fetch"
+	task_put_repository "github.com/asaringo99/task_management/internal/application/repository/task/put"
 	task_create_usecase "github.com/asaringo99/task_management/internal/application/usecase/task/create"
 	task_delete_usecase "github.com/asaringo99/task_management/internal/application/usecase/task/delete"
 	task_fetch_usecase "github.com/asaringo99/task_management/internal/application/usecase/task/fetch"
+	task_put_usecase "github.com/asaringo99/task_management/internal/application/usecase/task/put"
 	db "github.com/asaringo99/task_management/internal/db"
 )
 
@@ -56,6 +59,11 @@ func main() {
 			task_delete_usecase.NewTaskDeleteInteractor,
 			task_delete_repository.NewTaskDeleteRepository,
 			task_delete_gateway.NewTaskDeleteGateway,
+
+			task_put_usecase.NewTaskPutUsecase,
+			task_put_usecase.NewTaskPutInteractor,
+			task_put_repository.NewTaskPutRepository,
+			task_put_gateway.NewTaskPutGateway,
 
 			task.NewManagementController,
 

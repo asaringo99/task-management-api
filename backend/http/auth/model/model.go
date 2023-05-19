@@ -19,13 +19,6 @@ type userModel struct {
 	Username string
 }
 
-func (u *userInfoModel) ToEntity() entity.Userinfo {
-	username := domain.NewUsername(u.Username)
-	password := domain.NewPassword(u.Password)
-	user := entity.NewUserinfo(username, password)
-	return user
-}
-
 type AuthModelImpl struct {
 	db *gorm.DB
 }

@@ -10,19 +10,22 @@ import (
 	condition_delete "github.com/asaringo99/task_management/internal/application/usecase/task/delete/condition"
 	usecase_get "github.com/asaringo99/task_management/internal/application/usecase/task/fetch"
 	condition_get "github.com/asaringo99/task_management/internal/application/usecase/task/fetch/condition"
+	usecase_put "github.com/asaringo99/task_management/internal/application/usecase/task/put"
+	condition_put "github.com/asaringo99/task_management/internal/application/usecase/task/put/condition"
 	"github.com/labstack/echo/v4"
 )
 
 type TaskController struct {
-	taskAllGetUsecase usecase_get.TaskFetchUsecaseInputPort
+	taskFetchUsecase  usecase_get.TaskFetchUsecaseInputPort
 	taskCreateUsecase usecase_create.TaskCreateUsecaseInputPort
 	taskDeleteUsecase usecase_delete.TaskDeleteUsecaseInputPort
+	taskPutUsecase    usecase_put.TaskPutUsecaseInputPort
 }
 
 func (controller TaskController) Get(c echo.Context) ([]presenter.TaskFetchPresenterOutputDto, error) {
 	userid := authjwt.RetrieveUserIdFromToken(c)
 	input := condition_get.NewTaskFetchCondition(userid)
-	output, err := controller.taskAllGetUsecase.Find(input)
+	output, err := controller.taskFetchUsecase.Find(input)
 	if err != nil {
 		return nil, err
 	}
@@ -44,6 +47,21 @@ func (controller TaskController) Post(c echo.Context) error {
 	return nil
 }
 
+func (controller TaskController) Put(c echo.Context) error {
+	// TODO: Bindで受け取る
+	userid := authjwt.RetrieveUserIdFromToken(c)
+	taskid, _ := strconv.Atoi(c.Param("id"))
+	status := c.FormValue("status")
+	contents := c.FormValue("contents")
+	priority, _ := strconv.Atoi(c.FormValue("priority"))
+	input := condition_put.NewTaskPutCondition(taskid, userid, status, priority, contents)
+	err := controller.taskPutUsecase.Put(input)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (controller TaskController) Delete(c echo.Context) error {
 	userid := authjwt.RetrieveUserIdFromToken(c)
 	taskid, _ := strconv.Atoi(c.Param("id"))
@@ -59,10 +77,12 @@ func NewManagementController(
 	taskAllGetUsecase usecase_get.TaskFetchUsecaseInputPort,
 	taskCreateUsecase usecase_create.TaskCreateUsecaseInputPort,
 	taskDeleteUsecase usecase_delete.TaskDeleteUsecaseInputPort,
+	taskPutUsecase usecase_put.TaskPutUsecaseInputPort,
 ) *TaskController {
 	return &TaskController{
-		taskAllGetUsecase: taskAllGetUsecase,
+		taskFetchUsecase:  taskAllGetUsecase,
 		taskCreateUsecase: taskCreateUsecase,
 		taskDeleteUsecase: taskDeleteUsecase,
+		taskPutUsecase:    taskPutUsecase,
 	}
 }
