@@ -21,6 +21,7 @@ services:
       - db
     networks:
       - task_management_network
+      - auth_network
 
   db:
     build:
@@ -48,6 +49,9 @@ services:
 
 networks:
   task_management_network:
+    driver: bridge
+    external: true
+  auth_network:
     driver: bridge
     external: true
 
