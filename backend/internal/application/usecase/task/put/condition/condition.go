@@ -1,6 +1,6 @@
 package condition
 
-import domain "github.com/asaringo99/task_management/internal/domain/entity"
+import domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 
 type TaskPutCondition struct {
 	taskid   domain.Taskid

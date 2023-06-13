@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	repository "github.com/asaringo99/task_management/internal/application/repository/task/fetch"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 func TestConvert(t *testing.T) {

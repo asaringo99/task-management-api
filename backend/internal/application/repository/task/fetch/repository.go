@@ -4,7 +4,7 @@ import (
 	model "github.com/asaringo99/task_management/internal/adapter/gateway/task"
 	gateway "github.com/asaringo99/task_management/internal/adapter/gateway/task/fetch"
 	"github.com/asaringo99/task_management/internal/application/usecase/task/fetch/condition"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 type TaskFetchRepository struct {

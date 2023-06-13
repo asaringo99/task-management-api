@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	usecase "github.com/asaringo99/task_management/internal/application/usecase/task/fetch"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 func TestBuild(t *testing.T) {

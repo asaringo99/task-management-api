@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/asaringo99/task_management/http/auth/entity"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 type AuthModelInterface interface {
