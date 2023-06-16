@@ -3,7 +3,7 @@ package model
 type TaskModel struct {
 	Id       int
 	Userid   int
-	Status   string
+	Boardid  int
 	Priority int
 	Contents string
 }

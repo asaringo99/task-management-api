@@ -4,8 +4,8 @@ import model "github.com/asaringo99/task_management/internal/adapter/gateway/tas
 
 type TaskAllGetGatewayMock struct{}
 
-func (c *TaskAllGetGatewayMock) Create(input model.TaskModel) error {
-	return nil
+func (c *TaskAllGetGatewayMock) Create(input model.TaskModel) (model.TaskModel, error) {
+	return model.TaskModel{}, nil
 }
 
 func NewTaskAllGetGatewayMock() TaskCreateGatewayInterface {
