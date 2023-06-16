@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/asaringo99/task_management/http/auth/controller/signup"
+	res "github.com/asaringo99/task_management/http/response"
 	"github.com/labstack/echo/v4"
 )
 
@@ -18,8 +19,14 @@ func NewSignUpHandler(controller *signup.SignUpController) *SignUpHandler {
 }
 
 func (h *SignUpHandler) AddEntryPoint(e *echo.Echo) {
+	var response res.ResponseBody
+
 	e.POST("/signup", func(c echo.Context) error {
-		h.controller.SignUp(c)
+		if err := h.controller.SignUp(c); err != nil {
+			response.Status = res.MessageError
+			response.Error = err.Error()
+			return c.JSON(http.StatusConflict, response)
+		}
 		return c.String(http.StatusOK, "CREATE Success!")
 	})
 }
