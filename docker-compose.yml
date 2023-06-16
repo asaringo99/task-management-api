@@ -7,6 +7,8 @@ services:
     volumes:
       - ./backend:/app/
     tty: true
+    container_name: api-container
+    hostname: api-server
     environment:
       MYSQL_HOST: db-container
       MYSQL_PORT: 3306
