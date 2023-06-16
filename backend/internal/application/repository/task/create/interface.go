@@ -5,13 +5,20 @@ import (
 )
 
 type TaskCreateRepositoryInterface interface {
-	Create(TaskCreateRepositoryInput) error
+	Create(TaskCreateRepositoryInput) (*TaskCreateRepositoryOutput, error)
 }
 
 type TaskCreateRepositoryInput struct {
 	UserId   domain.Userid
-	UserName domain.Username
-	Status   domain.Status
+	Boardid  domain.Id
+	Contents domain.Contents
+	Priority domain.Priority
+}
+
+type TaskCreateRepositoryOutput struct {
+	Taskid   domain.Taskid
+	Userid   domain.Userid
+	Boardid  domain.Id
 	Contents domain.Contents
 	Priority domain.Priority
 }

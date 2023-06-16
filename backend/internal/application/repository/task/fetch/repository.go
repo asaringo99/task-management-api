@@ -33,7 +33,7 @@ func convert(value model.TaskModel) TaskFetchRepositoryOutput {
 	return TaskFetchRepositoryOutput{
 		domain.NewTaskid(value.Id),
 		domain.NewUserid(value.Userid),
-		domain.NewStatus(value.Status),
+		domain.NewId(value.Boardid),
 		domain.NewContents(value.Contents),
 		domain.NewPriority(value.Priority),
 	}

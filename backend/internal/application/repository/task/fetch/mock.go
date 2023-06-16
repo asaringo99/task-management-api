@@ -9,21 +9,22 @@ func (repository TaskFetchRepositoryMock) Find() []TaskFetchRepositoryOutput {
 		{
 			Taskid:   domain.NewTaskid(1),
 			Userid:   domain.NewUserid(1),
-			Status:   domain.NewStatus("Pending"),
+			Boardid:  domain.NewId(1),
 			Contents: domain.NewContents("test1"),
 			Priority: domain.NewPriority(1),
 		},
 		{
 			Taskid:   domain.NewTaskid(2),
 			Userid:   domain.NewUserid(1),
-			Status:   domain.NewStatus("In Progress"),
+			Boardid:  domain.NewId(2),
 			Contents: domain.NewContents("test2"),
 			Priority: domain.NewPriority(10),
 		},
 		{
-			Taskid:   domain.NewTaskid(3),
-			Userid:   domain.NewUserid(1),
-			Status:   domain.NewStatus("Closed"),
+			Taskid:  domain.NewTaskid(3),
+			Userid:  domain.NewUserid(1),
+			Boardid: domain.NewId(1),
+
 			Contents: domain.NewContents("test3"),
 			Priority: domain.NewPriority(5),
 		},

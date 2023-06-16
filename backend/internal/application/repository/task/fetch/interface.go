@@ -16,7 +16,7 @@ type TaskFetchRepositoryInput struct {
 type TaskFetchRepositoryOutput struct {
 	Taskid   domain.Taskid
 	Userid   domain.Userid
-	Status   domain.Status
+	Boardid  domain.Id
 	Contents domain.Contents
 	Priority domain.Priority
 }
