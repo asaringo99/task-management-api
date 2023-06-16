@@ -36,7 +36,7 @@ func TestNewTaskPutCondition(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		got := NewTaskPutCondition(tc.taskid, tc.userid, tc.fix)
+		got := NewTaskPatchCondition(tc.taskid, tc.userid, tc.fix)
 		if !reflect.DeepEqual(got, tc.want) {
 			t.Fatalf("case: %s, expected: %v, got: %v", tc.name, tc.want, got)
 		}
