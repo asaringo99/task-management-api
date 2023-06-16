@@ -31,7 +31,7 @@ func convert(value repository.TaskFetchRepositoryOutput) TaskFetchUsecaseOutput 
 	return TaskFetchUsecaseOutput{
 		Taskid:   value.Taskid,
 		Userid:   value.Userid,
-		Status:   value.Status,
+		Boardid:  value.Boardid,
 		Contents: value.Contents,
 		Priority: value.Priority,
 	}

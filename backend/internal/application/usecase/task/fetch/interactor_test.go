@@ -19,14 +19,14 @@ func TestConvert(t *testing.T) {
 			output: repository.TaskFetchRepositoryOutput{
 				Taskid:   domain.NewTaskid(1),
 				Userid:   domain.NewUserid(1),
-				Status:   domain.NewStatus("Pending"),
+				Boardid:  domain.NewId(1),
 				Contents: domain.NewContents("test"),
 				Priority: domain.NewPriority(1),
 			},
 			want: TaskFetchUsecaseOutput{
 				Taskid:   domain.NewTaskid(1),
 				Userid:   domain.NewUserid(1),
-				Status:   domain.NewStatus("Pending"),
+				Boardid:  domain.NewId(1),
 				Contents: domain.NewContents("test"),
 				Priority: domain.NewPriority(1),
 			},

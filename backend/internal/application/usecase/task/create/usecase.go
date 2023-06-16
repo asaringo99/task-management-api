@@ -5,20 +5,28 @@ import (
 )
 
 type TaskCreateUsecaseInputPort interface {
-	Create(taskCreateUsecaseInput) error
+	Create(taskCreateUsecaseInput) (*TaskCreateUsecaseOutput, error)
 }
 
 type taskCreateUsecaseInput struct {
 	Userid   domain.Userid
-	Status   domain.Status
+	Boardid  domain.Id
 	Priority domain.Priority
 	Contents domain.Contents
 }
 
-func NewTaskCreateUsecaseInput(userid int, status string, priority int, contents string) taskCreateUsecaseInput {
+type TaskCreateUsecaseOutput struct {
+	Taskid   domain.Taskid
+	Userid   domain.Userid
+	Boardid  domain.Id
+	Priority domain.Priority
+	Contents domain.Contents
+}
+
+func NewTaskCreateUsecaseInput(userid int, boardid int, priority int, contents string) taskCreateUsecaseInput {
 	return taskCreateUsecaseInput{
 		Userid:   domain.NewUserid(userid),
-		Status:   domain.NewStatus(status),
+		Boardid:  domain.NewId(boardid),
 		Priority: domain.NewPriority(priority),
 		Contents: domain.NewContents(contents),
 	}

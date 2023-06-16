@@ -4,7 +4,7 @@ type TaskCreateUsecaseImpl struct {
 	interactor TaskCreateInteractor
 }
 
-func (c *TaskCreateUsecaseImpl) Create(input taskCreateUsecaseInput) error {
+func (c *TaskCreateUsecaseImpl) Create(input taskCreateUsecaseInput) (*TaskCreateUsecaseOutput, error) {
 	return c.interactor.create(input)
 }
 

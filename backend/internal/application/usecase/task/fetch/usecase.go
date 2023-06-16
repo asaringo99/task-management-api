@@ -12,7 +12,7 @@ type TaskFetchUsecaseInputPort interface {
 type TaskFetchUsecaseOutput struct {
 	Taskid   domain.Taskid
 	Userid   domain.Userid
-	Status   domain.Status
+	Boardid  domain.Id
 	Priority domain.Priority
 	Contents domain.Contents
 }
