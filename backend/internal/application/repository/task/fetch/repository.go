@@ -4,7 +4,7 @@ import (
 	model "github.com/asaringo99/task_management/internal/adapter/gateway/task"
 	gateway "github.com/asaringo99/task_management/internal/adapter/gateway/task/fetch"
 	"github.com/asaringo99/task_management/internal/application/usecase/task/fetch/condition"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 type TaskFetchRepository struct {
@@ -33,7 +33,7 @@ func convert(value model.TaskModel) TaskFetchRepositoryOutput {
 	return TaskFetchRepositoryOutput{
 		domain.NewTaskid(value.Id),
 		domain.NewUserid(value.Userid),
-		domain.NewStatus(value.Status),
+		domain.NewId(value.Boardid),
 		domain.NewContents(value.Contents),
 		domain.NewPriority(value.Priority),
 	}

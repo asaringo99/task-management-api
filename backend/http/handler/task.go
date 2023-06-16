@@ -5,7 +5,8 @@ import (
 	"net/http"
 
 	authjwt "github.com/asaringo99/task_management/http/auth/jwt"
-	"github.com/asaringo99/task_management/internal/adapter/controller"
+	res "github.com/asaringo99/task_management/http/response"
+	controller "github.com/asaringo99/task_management/internal/adapter/controller/task"
 	"github.com/golang-jwt/jwt/v4"
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
@@ -48,11 +49,16 @@ func (t *TaskHandler) AddEntryPoint(e *echo.Echo) {
 		})
 
 		r.POST("/create", func(c echo.Context) error {
-			err := t.controller.Post(c)
+			var response res.ResponseBody
+			ret, err := t.controller.Post(c)
 			if err != nil {
-				return c.String(http.StatusNoContent, "Error!")
+				response.Status = res.MessageError
+				response.Error = err.Error()
+				return c.JSON(http.StatusInternalServerError, response)
 			}
-			return c.String(http.StatusOK, "Success")
+			response.Status = res.MessageSuccess
+			response.Data = ret
+			return c.JSON(http.StatusOK, response)
 		})
 
 		r.DELETE("/delete/:id", func(c echo.Context) error {
@@ -65,6 +71,14 @@ func (t *TaskHandler) AddEntryPoint(e *echo.Echo) {
 
 		r.PUT("/put/:id", func(c echo.Context) error {
 			err := t.controller.Put(c)
+			if err != nil {
+				return c.String(http.StatusNoContent, "Error!")
+			}
+			return c.String(http.StatusOK, "Success")
+		})
+
+		r.PUT("/patch/:id", func(c echo.Context) error {
+			err := t.controller.Patch(c)
 			if err != nil {
 				return c.String(http.StatusNoContent, "Error!")
 			}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/asaringo99/task_management/http/auth/entity"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -30,7 +30,7 @@ func (c *AuthModelImpl) ContainUser(user *entity.Userinfo) error {
 	if len(usermodel) == 0 {
 		return nil
 	}
-	return fmt.Errorf("ContainUser")
+	return fmt.Errorf("AlreasyContainUserError")
 }
 
 func (c *AuthModelImpl) CanAuthenticateUser(user *entity.Userinfo) error {

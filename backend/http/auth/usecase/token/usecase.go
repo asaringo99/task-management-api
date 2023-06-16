@@ -3,7 +3,7 @@ package token
 import (
 	authjwt "github.com/asaringo99/task_management/http/auth/jwt"
 	"github.com/asaringo99/task_management/http/auth/repository"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 	"github.com/labstack/echo/v4"
 )
 

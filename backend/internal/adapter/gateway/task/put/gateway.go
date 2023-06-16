@@ -13,12 +13,12 @@ type TaskPutGateway struct {
 func (c *TaskPutGateway) Put(input condition.TaskPutCondition) error {
 	taskid := input.GetTaskid()
 	userid := input.GetUserid()
-	status := input.GetStatus()
+	boardid := input.GetBoardid()
 	priority := input.GetPriority()
 	contents := input.GetContents()
 	c.db.Table("tasks").Where(&model.TaskModel{Id: taskid.ToValue(), Userid: userid.ToValue()}).Updates(
 		model.TaskModel{
-			Status:   status.ToValue(),
+			Boardid:  boardid.ToValue(),
 			Priority: priority.ToValue(),
 			Contents: contents.ToValue(),
 		},

@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"github.com/asaringo99/task_management/internal/application/usecase/task/fetch/condition"
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 type TaskFetchUsecaseInputPort interface {
@@ -12,7 +12,7 @@ type TaskFetchUsecaseInputPort interface {
 type TaskFetchUsecaseOutput struct {
 	Taskid   domain.Taskid
 	Userid   domain.Userid
-	Status   domain.Status
+	Boardid  domain.Id
 	Priority domain.Priority
 	Contents domain.Contents
 }

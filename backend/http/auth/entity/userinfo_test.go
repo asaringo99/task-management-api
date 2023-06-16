@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	domain "github.com/asaringo99/task_management/internal/domain/entity"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 )
 
 func TestNewUserInfo(t *testing.T) {

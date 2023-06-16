@@ -1,8 +1,6 @@
 package gateway
 
 import (
-	"fmt"
-
 	model "github.com/asaringo99/task_management/internal/adapter/gateway/task"
 	"github.com/asaringo99/task_management/internal/application/usecase/task/delete/condition"
 	"gorm.io/gorm"
@@ -14,7 +12,6 @@ type TaskDeleteGateway struct {
 
 func (c *TaskDeleteGateway) Delete(input condition.TaskDeleteCondition) error {
 	var task []model.TaskModel
-	fmt.Println(input)
 	c.db.Table("tasks").Where(&model.TaskModel{Id: input.Taskid.ToValue(), Userid: input.Userid.ToValue()}).Delete(task)
 	return nil
 }

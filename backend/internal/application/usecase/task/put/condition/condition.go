@@ -1,20 +1,20 @@
 package condition
 
-import domain "github.com/asaringo99/task_management/internal/domain/entity"
+import domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 
 type TaskPutCondition struct {
 	taskid   domain.Taskid
 	userid   domain.Userid
-	status   domain.Status
+	boardid  domain.Id
 	priority domain.Priority
 	contents domain.Contents
 }
 
-func NewTaskPutCondition(taskid int, userid int, status string, priority int, contents string) TaskPutCondition {
+func NewTaskPutCondition(taskid int, userid int, boardid int, priority int, contents string) TaskPutCondition {
 	return TaskPutCondition{
 		taskid:   domain.NewTaskid(taskid),
 		userid:   domain.NewUserid(userid),
-		status:   domain.NewStatus(status),
+		boardid:  domain.NewId(boardid),
 		priority: domain.NewPriority(priority),
 		contents: domain.NewContents(contents),
 	}
@@ -28,8 +28,8 @@ func (c TaskPutCondition) GetUserid() domain.Userid {
 	return c.userid
 }
 
-func (c TaskPutCondition) GetStatus() domain.Status {
-	return c.status
+func (c TaskPutCondition) GetBoardid() domain.Id {
+	return c.boardid
 }
 
 func (c TaskPutCondition) GetPriority() domain.Priority {

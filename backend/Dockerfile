@@ -7,6 +7,7 @@ COPY ./go.mod /app
 COPY ./go.sum /app
 
 RUN go mod download
+RUN go mod tidy
 
 COPY *.go /app
 

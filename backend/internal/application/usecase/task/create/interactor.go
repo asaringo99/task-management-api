@@ -14,15 +14,25 @@ func NewTaskCreateInteractor(repository repository.TaskCreateRepositoryInterface
 	}
 }
 
-func (interactor *TaskCreateInteractor) create(input taskCreateUsecaseInput) error {
-	err := interactor.repository.Create(convert(input))
-	return err
+func (interactor *TaskCreateInteractor) create(input taskCreateUsecaseInput) (*TaskCreateUsecaseOutput, error) {
+	repositoryOutput, err := interactor.repository.Create(convert(input))
+	if err != nil {
+		return nil, err
+	}
+	output := TaskCreateUsecaseOutput{
+		repositoryOutput.Taskid,
+		repositoryOutput.Userid,
+		repositoryOutput.Boardid,
+		repositoryOutput.Priority,
+		repositoryOutput.Contents,
+	}
+	return &output, nil
 }
 
 func convert(input taskCreateUsecaseInput) repository.TaskCreateRepositoryInput {
 	return repository.TaskCreateRepositoryInput{
 		UserId:   input.Userid,
-		Status:   input.Status,
+		Boardid:  input.Boardid,
 		Priority: input.Priority,
 		Contents: input.Contents,
 	}
