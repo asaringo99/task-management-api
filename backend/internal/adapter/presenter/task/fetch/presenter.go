@@ -9,11 +9,11 @@ type TaskFetchPresenter struct {
 }
 
 type TaskFetchPresenterOutputDto struct {
-	Taskid   int
-	Userid   int
-	Status   string
-	Priority int
-	Contents string
+	Taskid   int    `json:"taskid"`
+	Userid   int    `json:"userid"`
+	Boardid  int    `json:"boardid"`
+	Priority int    `json:"priority"`
+	Contents string `json:"contents"`
 }
 
 func (presenter TaskFetchPresenter) Build() []TaskFetchPresenterOutputDto {
@@ -29,7 +29,7 @@ func convert(output usecase.TaskFetchUsecaseOutput) TaskFetchPresenterOutputDto 
 	return TaskFetchPresenterOutputDto{
 		Taskid:   output.Taskid.ToValue(),
 		Userid:   output.Userid.ToValue(),
-		Status:   output.Status.ToValue(),
+		Boardid:  output.Boardid.ToValue(),
 		Priority: output.Priority.ToValue(),
 		Contents: output.Contents.ToValue(),
 	}
