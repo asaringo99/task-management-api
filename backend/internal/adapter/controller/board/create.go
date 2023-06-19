@@ -15,8 +15,8 @@ type Board struct {
 }
 
 func (controller BoardController) Post(c echo.Context) (*presenter_create.BoardCreatePresenterOutputDto, error) {
-	// TODO: Bindで受け取る
 	userid := authjwt.RetrieveUserIdFromToken(c)
+	fmt.Println(userid)
 	board := new(Board)
 	if err := c.Bind(board); err != nil {
 		return nil, err
