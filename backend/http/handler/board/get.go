@@ -15,9 +15,6 @@ func (t *BoardHandler) get(c echo.Context) error {
 		response.Error = err.Error()
 		return c.JSON(http.StatusUnauthorized, response)
 	}
-	// userid := authjwt.RetrieveUserIdFromToken(c)
-	// token, _ := authjwt.CreateJwtToken(authjwt.RetrieveUserIdFromToken(c), false)
-
 	response.Status = res.MessageSuccess
 	response.Data = ret
 	return c.JSON(http.StatusOK, response)

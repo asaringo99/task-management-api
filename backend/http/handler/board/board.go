@@ -25,7 +25,8 @@ func (t *BoardHandler) AddEntryPoint(e *echo.Echo) {
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
 			return new(authjwt.JwtCustomClaims)
 		},
-		SigningKey: []byte("secret"),
+		SigningKey:  []byte("secret"),
+		TokenLookup: "cookie:token",
 	}
 	r.Use(echojwt.WithConfig(config))
 
