@@ -1,16 +1,16 @@
 package login
 
 import (
+	"github.com/asaringo99/task_management/http/auth/entity"
 	"github.com/asaringo99/task_management/http/auth/usecase/login"
-	"github.com/labstack/echo/v4"
 )
 
 type LoginController struct {
 	usecase login.LoginUsecase
 }
 
-func (controller *LoginController) Login(c echo.Context) error {
-	if err := controller.usecase.Login(c); err != nil {
+func (controller *LoginController) Login(userCredential entity.UserCredential) error {
+	if err := controller.usecase.Login(userCredential); err != nil {
 		return err
 	}
 	return nil

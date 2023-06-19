@@ -1,20 +1,22 @@
 package token
 
 import (
+	"fmt"
+
+	"github.com/asaringo99/task_management/http/auth/entity"
 	authjwt "github.com/asaringo99/task_management/http/auth/jwt"
 	"github.com/asaringo99/task_management/http/auth/repository"
 	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
-	"github.com/labstack/echo/v4"
 )
 
 type TokenUsecase struct {
 	repository repository.AuthRepositoryInterface
 }
 
-func (usecase *TokenUsecase) RetrieveToken(c echo.Context) (string, error) {
-	u := c.FormValue("username")
-	username := domain.NewUsername(u)
+func (usecase *TokenUsecase) RetrieveToken(userCredential entity.UserCredential) (string, error) {
+	username := domain.NewUsername(userCredential.Username)
 	userid, err := usecase.repository.TransformUserIdFromUserName(&username)
+	fmt.Println(userid, username)
 	if err != nil {
 		return "", err
 	}

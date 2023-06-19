@@ -1,16 +1,16 @@
 package token
 
 import (
+	"github.com/asaringo99/task_management/http/auth/entity"
 	"github.com/asaringo99/task_management/http/auth/usecase/token"
-	"github.com/labstack/echo/v4"
 )
 
 type TokenController struct {
 	usecase token.TokenUsecase
 }
 
-func (controller *TokenController) RetrieveToken(c echo.Context) (string, error) {
-	token, err := controller.usecase.RetrieveToken(c)
+func (controller *TokenController) RetrieveToken(userCredential entity.UserCredential) (string, error) {
+	token, err := controller.usecase.RetrieveToken(userCredential)
 	if err != nil {
 		return "", err
 	}
