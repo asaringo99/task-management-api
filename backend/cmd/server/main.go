@@ -15,6 +15,7 @@ import (
 	token_usecase "github.com/asaringo99/task_management/http/auth/usecase/token"
 	"github.com/asaringo99/task_management/http/handler"
 	board_handler "github.com/asaringo99/task_management/http/handler/board"
+	task_handler "github.com/asaringo99/task_management/http/handler/task"
 	"github.com/asaringo99/task_management/http/router"
 	board_controller "github.com/asaringo99/task_management/internal/adapter/controller/board"
 	task_controller "github.com/asaringo99/task_management/internal/adapter/controller/task"
@@ -116,7 +117,7 @@ func main() {
 				router.NewRouter,
 				fx.ParamTags(`group:"routes"`),
 			),
-			handler.AsHandler(handler.NewTaskHandler),
+			handler.AsHandler(task_handler.NewTaskHandler),
 			handler.AsHandler(board_handler.NewBoardHandler),
 			handler.AsHandler(handler.NewSignUpHandler),
 			handler.AsHandler(handler.NewLoginHandler),
