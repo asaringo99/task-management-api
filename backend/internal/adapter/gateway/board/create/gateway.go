@@ -12,6 +12,7 @@ type BoardCreateGateway struct {
 func (c *BoardCreateGateway) Create(input model.BoardModel) (model.BoardModel, error) {
 	task := model.BoardModel{
 		Userid:   input.Userid,
+		Tabid:    input.Tabid,
 		Priority: input.Priority,
 		Status:   input.Status,
 	}
