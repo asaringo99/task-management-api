@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS `tasks` (
     `boardid` int(11) NOT NULL,
     `priority` int(11) NOT NULL,
     `contents` VARCHAR(191) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (boardid) REFERENCES boards(id) ON DELETE CASCADE
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

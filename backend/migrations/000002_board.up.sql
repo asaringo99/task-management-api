@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS `boards` (
     `tabid` int(11) NOT NULL,
     `status` VARCHAR(191) NOT NULL,
     `priority` int(11) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (tabid) REFERENCES tabs(id) ON DELETE CASCADE
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
