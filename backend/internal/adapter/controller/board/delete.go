@@ -10,9 +10,9 @@ import (
 
 func (controller BoardController) Delete(c echo.Context) error {
 	userid := authjwt.RetrieveUserIdFromToken(c)
-	boardid, _ := strconv.Atoi(c.Param("boardid"))
-	board := condition_delete.NewBoardDeleteCondition(userid, boardid)
-	err := controller.boardDeleteUsecase.Delete(board)
+	boardid, _ := strconv.Atoi(c.Param("id"))
+	condition := condition_delete.NewBoardDeleteCondition(boardid, userid)
+	err := controller.boardDeleteUsecase.Delete(condition)
 	if err != nil {
 		return err
 	}
