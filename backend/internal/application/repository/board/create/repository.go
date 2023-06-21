@@ -18,6 +18,7 @@ func (repository *BoardCreateRepository) Create(input BoardCreateRepositoryInput
 	output := BoardCreateRepositoryOutput{
 		domain.NewId(value.Id),
 		domain.NewUserid(value.Userid),
+		domain.NewId(value.Tabid),
 		domain.NewPriority(value.Priority),
 		domain.NewStatus(value.Status),
 	}
@@ -27,6 +28,7 @@ func (repository *BoardCreateRepository) Create(input BoardCreateRepositoryInput
 func convert(input BoardCreateRepositoryInput) model.BoardModel {
 	return model.BoardModel{
 		Userid:   input.Userid.ToValue(),
+		Tabid:    input.Tabid.ToValue(),
 		Priority: input.Priority.ToValue(),
 		Status:   input.Status.ToValue(),
 	}

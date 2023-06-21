@@ -10,6 +10,7 @@ type BoardCreateRepositoryInterface interface {
 
 type BoardCreateRepositoryInput struct {
 	Userid   domain.Userid
+	Tabid    domain.Id
 	Priority domain.Priority
 	Status   domain.Status
 }
@@ -17,6 +18,7 @@ type BoardCreateRepositoryInput struct {
 type BoardCreateRepositoryOutput struct {
 	Boardid  domain.Id
 	Userid   domain.Userid
+	Tabid    domain.Id
 	Priority domain.Priority
 	Status   domain.Status
 }

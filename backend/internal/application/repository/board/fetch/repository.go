@@ -33,6 +33,7 @@ func convert(value model.BoardModel) BoardFetchRepositoryOutput {
 	return BoardFetchRepositoryOutput{
 		domain.NewId(value.Id),
 		domain.NewUserid(value.Userid),
+		domain.NewId(value.Tabid),
 		domain.NewPriority(value.Priority),
 		domain.NewStatus(value.Status),
 	}
