@@ -1,6 +1,6 @@
 -- Create Table
 CREATE TABLE IF NOT EXISTS `tabs` (
-    `id` int(11) NOT NULL,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `userid` int(11) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `is_active` BOOLEAN NOT NULL,
