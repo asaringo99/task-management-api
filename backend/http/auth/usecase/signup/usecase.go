@@ -1,6 +1,8 @@
 package signup
 
 import (
+	"fmt"
+
 	"github.com/asaringo99/task_management/http/auth/entity"
 	"github.com/asaringo99/task_management/http/auth/repository"
 	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
@@ -12,10 +14,13 @@ type SignUpUsecase struct {
 }
 
 func (usecase *SignUpUsecase) RegisterUser(c echo.Context) error {
-	u := c.FormValue("username")
-	p := c.FormValue("password")
-	username := domain.NewUsername(u)
-	password := domain.NewHashedPassword(p)
+	userCredential := new(entity.UserCredential)
+	if err := c.Bind(userCredential); err != nil {
+		return err
+	}
+	fmt.Println(userCredential)
+	username := domain.NewUsername(userCredential.Username)
+	password := domain.NewHashedPassword(userCredential.Password)
 	user := entity.NewUserinfo(username, password)
 	if err := usecase.repository.ContainUser(&user); err != nil {
 		return err
