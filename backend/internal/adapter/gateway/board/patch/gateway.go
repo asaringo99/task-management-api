@@ -10,12 +10,12 @@ type BoardPatchGateway struct {
 }
 
 func (c *BoardPatchGateway) Patch(input condition.BoardPatchCondition) error {
-	taskid := input.GetBoardid()
+	boardid := input.GetBoardid()
 	userid := input.GetUserid()
 	patch := input.GetPatchData()
 	column := patch.Column
 	value := patch.Value
-	c.db.Table("tasks").Where("id = ? AND userid = ?", taskid.ToValue(), userid.ToValue()).Update(column, value)
+	c.db.Table("boards").Where("id = ? AND userid = ?", boardid.ToValue(), userid.ToValue()).Update(column, value)
 	return nil
 }
 
