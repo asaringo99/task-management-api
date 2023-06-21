@@ -21,10 +21,9 @@ func (repository TaskFetchRepositoryMock) Find() []TaskFetchRepositoryOutput {
 			Priority: domain.NewPriority(10),
 		},
 		{
-			Taskid:  domain.NewTaskid(3),
-			Userid:  domain.NewUserid(1),
-			Boardid: domain.NewId(1),
-
+			Taskid:   domain.NewTaskid(3),
+			Userid:   domain.NewUserid(1),
+			Boardid:  domain.NewId(1),
 			Contents: domain.NewContents("test3"),
 			Priority: domain.NewPriority(5),
 		},
