@@ -1,12 +1,11 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/asaringo99/task_management/http/auth/controller/login"
 	"github.com/asaringo99/task_management/http/auth/controller/token"
+	auth_cookie "github.com/asaringo99/task_management/http/auth/cookie"
 	"github.com/asaringo99/task_management/http/auth/entity"
 	res "github.com/asaringo99/task_management/http/response"
 	"github.com/labstack/echo/v4"
@@ -34,7 +33,8 @@ func (h *LoginHandler) AddEntryPoint(e *echo.Echo) {
 	e.POST("/login", func(c echo.Context) error {
 		userCredential := new(entity.UserCredential)
 		if err := c.Bind(userCredential); err != nil {
-			return err
+			response.Status = err.Error()
+			return c.JSON(http.StatusInternalServerError, response)
 		}
 		if err := h.loginController.Login(*userCredential); err != nil {
 			response.Status = res.MessageError
@@ -42,22 +42,11 @@ func (h *LoginHandler) AddEntryPoint(e *echo.Echo) {
 		}
 		token, err := h.tokenController.RetrieveToken(*userCredential)
 		if err != nil {
-			return c.String(http.StatusInternalServerError, "Not Created Token")
+			response.Status = res.MessageError
+			return c.JSON(http.StatusInternalServerError, response)
 		}
-
-		cookie := new(http.Cookie)
-		cookie.Name = "token"
-		cookie.Value = token
-		cookie.Expires = time.Now().Add(24 * time.Hour)
-		cookie.SameSite = http.SameSiteLaxMode
-		cookie.Secure = false
-		cookie.Domain = "localhost"
-		cookie.Path = "/"
-		cookie.HttpOnly = false
+		cookie := auth_cookie.NewCookieForJwtToken(token)
 		c.SetCookie(cookie)
-		fmt.Println(cookie)
-		fmt.Println(c)
-
 		return c.JSON(http.StatusOK, res.ResponseBody{
 			Data: LoginResponseData{Token: token},
 		})
