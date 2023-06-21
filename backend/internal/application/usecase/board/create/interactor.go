@@ -14,7 +14,7 @@ func NewBoardCreateInteractor(repository repository.BoardCreateRepositoryInterfa
 	}
 }
 
-func (interactor *BoardCreateInteractor) create(input taskCreateUsecaseInput) (*BoardCreateUsecaseOutput, error) {
+func (interactor *BoardCreateInteractor) create(input boardCreateUsecaseInput) (*BoardCreateUsecaseOutput, error) {
 	value, err := interactor.repository.Create(convert(input))
 	if err != nil {
 		return nil, err
@@ -22,15 +22,17 @@ func (interactor *BoardCreateInteractor) create(input taskCreateUsecaseInput) (*
 	output := BoardCreateUsecaseOutput{
 		value.Boardid,
 		value.Userid,
+		value.Tabid,
 		value.Priority,
 		value.Status,
 	}
 	return &output, err
 }
 
-func convert(input taskCreateUsecaseInput) repository.BoardCreateRepositoryInput {
+func convert(input boardCreateUsecaseInput) repository.BoardCreateRepositoryInput {
 	return repository.BoardCreateRepositoryInput{
 		Userid:   input.Userid,
+		Tabid:    input.Tabid,
 		Priority: input.Priority,
 		Status:   input.Status,
 	}

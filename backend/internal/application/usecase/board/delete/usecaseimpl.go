@@ -7,7 +7,7 @@ type BoardDeleteUsecaseImpl struct {
 }
 
 func (c *BoardDeleteUsecaseImpl) Delete(input condition.BoardDeleteCondition) error {
-	return c.interactor.create(input)
+	return c.interactor.delete(input)
 }
 
 func NewBoardDeleteUsecase(interactor *BoardDeleteInteractor) BoardDeleteUsecaseInputPort {

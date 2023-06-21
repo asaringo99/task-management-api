@@ -12,6 +12,7 @@ type BoardFetchUsecaseInputPort interface {
 type BoardFetchUsecaseOutput struct {
 	Boardid  domain.Id
 	Userid   domain.Userid
+	Tabid    domain.Id
 	Priority domain.Priority
 	Status   domain.Status
 }

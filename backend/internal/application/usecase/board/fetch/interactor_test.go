@@ -19,12 +19,14 @@ func TestConvert(t *testing.T) {
 			output: repository.BoardFetchRepositoryOutput{
 				Boardid:  domain.NewId(1),
 				Userid:   domain.NewUserid(1),
+				Tabid:    domain.NewId(2),
 				Priority: domain.NewPriority(1),
 				Status:   domain.NewStatus("In Progress"),
 			},
 			want: BoardFetchUsecaseOutput{
 				Boardid:  domain.NewId(1),
 				Userid:   domain.NewUserid(1),
+				Tabid:    domain.NewId(2),
 				Priority: domain.NewPriority(1),
 				Status:   domain.NewStatus("In Progress"),
 			},

@@ -31,6 +31,7 @@ func convert(value repository.BoardFetchRepositoryOutput) BoardFetchUsecaseOutpu
 	return BoardFetchUsecaseOutput{
 		Boardid:  value.Boardid,
 		Userid:   value.Userid,
+		Tabid:    value.Tabid,
 		Priority: value.Priority,
 		Status:   value.Status,
 	}

@@ -4,7 +4,7 @@ type BoardCreateUsecaseImpl struct {
 	interactor BoardCreateInteractor
 }
 
-func (c *BoardCreateUsecaseImpl) Create(input taskCreateUsecaseInput) (*BoardCreateUsecaseOutput, error) {
+func (c *BoardCreateUsecaseImpl) Create(input boardCreateUsecaseInput) (*BoardCreateUsecaseOutput, error) {
 	return c.interactor.create(input)
 }
 

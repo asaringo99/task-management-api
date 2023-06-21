@@ -15,7 +15,7 @@ func NewBoardDeleteInteractor(repository repository.BoardDeleteRepositoryInterfa
 	}
 }
 
-func (interactor *BoardDeleteInteractor) create(input condition.BoardDeleteCondition) error {
+func (interactor *BoardDeleteInteractor) delete(input condition.BoardDeleteCondition) error {
 	err := interactor.repository.Delete(input)
 	return err
 }
