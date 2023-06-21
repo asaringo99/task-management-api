@@ -19,12 +19,14 @@ func TestBuild(t *testing.T) {
 			output: usecase.BoardCreateUsecaseOutput{
 				Boardid:  domain.NewId(1),
 				Userid:   domain.NewUserid(1),
+				Tabid:    domain.NewId(2),
 				Priority: domain.NewPriority(1),
 				Status:   domain.NewStatus("test"),
 			},
 			want: BoardCreatePresenterOutputDto{
 				Boardid:  1,
 				Userid:   1,
+				Tabid:    2,
 				Priority: 1,
 				Status:   "test",
 			},

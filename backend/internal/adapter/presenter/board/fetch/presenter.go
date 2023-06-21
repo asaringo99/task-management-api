@@ -11,6 +11,7 @@ type BoardFetchPresenter struct {
 type BoardFetchPresenterOutputDto struct {
 	Boardid  int    `json:"boardid"`
 	Userid   int    `json:"userid"`
+	Tabid    int    `json:"tabid"`
 	Priority int    `json:"prioriry"`
 	Status   string `json:"status"`
 }
@@ -28,6 +29,7 @@ func convert(output usecase.BoardFetchUsecaseOutput) BoardFetchPresenterOutputDt
 	return BoardFetchPresenterOutputDto{
 		Boardid:  output.Boardid.ToValue(),
 		Userid:   output.Userid.ToValue(),
+		Tabid:    output.Tabid.ToValue(),
 		Priority: output.Priority.ToValue(),
 		Status:   output.Status.ToValue(),
 	}
