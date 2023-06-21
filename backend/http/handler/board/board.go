@@ -38,5 +38,7 @@ func (t *BoardHandler) AddEntryPoint(e *echo.Echo) {
 		r.DELETE("/delete/:id", t.delete)
 
 		r.PUT("/put/:id", t.put)
+
+		r.PATCH("/patch/:id", t.patch)
 	}
 }
