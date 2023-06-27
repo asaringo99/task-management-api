@@ -1,8 +1,6 @@
 package gateway
 
 import (
-	"fmt"
-
 	model "github.com/asaringo99/task_management/internal/adapter/gateway/board"
 	"gorm.io/gorm"
 )
@@ -19,7 +17,6 @@ func (c *BoardCreateGateway) Create(input model.BoardModel) (model.BoardModel, e
 		Priority: input.Priority,
 		Status:   input.Status,
 	}
-	fmt.Println(task)
 	c.db.Table("boards").Create(&task)
 	return task, nil
 }
