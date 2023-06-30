@@ -23,11 +23,11 @@ type BoardCreateUsecaseOutput struct {
 	Status   domain.Status
 }
 
-func NewBoardCreateUsecaseInput(userid int, tabid int, priority int, status string) boardCreateUsecaseInput {
+func NewBoardCreateUsecaseInput(userid domain.Userid, tabid domain.Id, priority domain.Priority, status domain.Status) boardCreateUsecaseInput {
 	return boardCreateUsecaseInput{
-		Userid:   domain.NewUserid(userid),
-		Tabid:    domain.NewId(tabid),
-		Priority: domain.NewPriority(priority),
-		Status:   domain.NewStatus(status),
+		Userid:   userid,
+		Tabid:    tabid,
+		Priority: priority,
+		Status:   status,
 	}
 }

@@ -10,18 +10,18 @@ import (
 func TestNewCreateUsecaseInput(t *testing.T) {
 	tests := []struct {
 		name     string
-		userid   int
-		tabid    int
-		priority int
-		contents string
+		userid   domain.Userid
+		tabid    domain.Id
+		priority domain.Priority
+		status   domain.Status
 		want     boardCreateUsecaseInput
 	}{
 		{
 			name:     "no diff1",
-			userid:   1,
-			tabid:    1,
-			priority: 1,
-			contents: "Pending",
+			userid:   domain.NewUserid(1),
+			tabid:    domain.NewId(1),
+			priority: domain.NewPriority(1),
+			status:   domain.NewStatus("Pending"),
 			want: boardCreateUsecaseInput{
 				Userid:   domain.NewUserid(1),
 				Tabid:    domain.NewId(1),
@@ -31,10 +31,10 @@ func TestNewCreateUsecaseInput(t *testing.T) {
 		},
 		{
 			name:     "no diff2",
-			userid:   1000,
-			tabid:    1,
-			priority: 20,
-			contents: "Todo",
+			userid:   domain.NewUserid(1000),
+			tabid:    domain.NewId(1),
+			priority: domain.NewPriority(20),
+			status:   domain.NewStatus("Todo"),
 			want: boardCreateUsecaseInput{
 				Userid:   domain.NewUserid(1000),
 				Tabid:    domain.NewId(1),
@@ -46,7 +46,7 @@ func TestNewCreateUsecaseInput(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		got := NewBoardCreateUsecaseInput(tc.userid, tc.tabid, tc.priority, tc.contents)
+		got := NewBoardCreateUsecaseInput(tc.userid, tc.tabid, tc.priority, tc.status)
 		if !reflect.DeepEqual(got, tc.want) {
 			t.Fatalf("case: %s, expected: %v, got: %v", tc.name, tc.want, got)
 		}
