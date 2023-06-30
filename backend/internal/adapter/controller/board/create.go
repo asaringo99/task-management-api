@@ -6,6 +6,7 @@ import (
 	authjwt "github.com/asaringo99/task_management/http/auth/jwt"
 	presenter_create "github.com/asaringo99/task_management/internal/adapter/presenter/board/create"
 	usecase_create "github.com/asaringo99/task_management/internal/application/usecase/board/create"
+	domain "github.com/asaringo99/task_management/internal/domain/valueobject"
 	"github.com/labstack/echo/v4"
 )
 
@@ -23,7 +24,12 @@ func (controller BoardController) Post(c echo.Context) (*presenter_create.BoardC
 		return nil, err
 	}
 	fmt.Println(userid, board.Tabid, board.Status, board.Priority)
-	boardCureateUsecaseInput := usecase_create.NewBoardCreateUsecaseInput(userid, board.Tabid, board.Priority, board.Status)
+	boardCureateUsecaseInput := usecase_create.NewBoardCreateUsecaseInput(
+		domain.NewUserid(userid),
+		domain.NewId(board.Tabid),
+		domain.NewPriority(board.Priority),
+		domain.NewStatus(board.Status),
+	)
 	output, err := controller.boardCreateUsecase.Create(boardCureateUsecaseInput)
 	if err != nil {
 		return nil, err
